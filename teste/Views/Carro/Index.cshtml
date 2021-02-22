@@ -3,25 +3,65 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container" style="background-color:black; opacity: 0.8; width: 253px; height: 310px; border: double;">
-    <div class="row" style="margin-left: -15px; margin-right: 15px;">
+<style>
+    #container {
+        background-color: black;
+        opacity: 0.8;
+        width: 253px;
+        height: 310px;
+        border: double;
+        border-radius: 10px;
+        margin-top: 5%;
+    }
+    #span {
+        text-align: center;
+        color: cornflowerblue;
+        opacity: 1;
+        margin-left: 20%;
+        margin-top: 2%;
+        font-size: 20px;
+    }
+    #ddlCarro {
+        border-radius: 7px;
+        width: 220px;
+        margin-top: 20%;
+        margin-left: 6%;
+        height: 40px;
+    }
+    #ddlModelo {
+        border-radius: 7px;
+        width: 220px;
+        margin-top: 15%;
+        margin-left: 6%;
+        height: 40px;
+    }
+    .btnTeste {
+        border-radius: 7px;
+        border: none;
+        margin-top: 20%;
+        margin-left: 33%;
+        width: 100px;
+        height: 40px;
+    }
+</style>
 
-        <span style="text-align:center; color: cornflowerblue; opacity: 1; margin-left: 20%; margin-top: 2%; font-size: 20px;"><b>Qual o seu carro?</b></span>
-        <select class="col-md-12" id="ddlCarro" style="border-radius:7px; width:220px; margin-top: 20%; margin-left: 6%;  height: 40px;">
+<div class="container" id="container">
+    <div class="row" style="margin-left: -15px; margin-right: 15px;">
+        <span id="span"><b>Qual o seu carro?</b></span>
+        <select class="col-md-12" id="ddlCarro" style="">
             <option>Marca</option>
             @foreach (var carro in Model.Carro)
             {
                 <option value="@carro.Id">@carro.MarcaCarro</option>
             }
         </select>
-        @*<label>Selecione um modelo</label>*@
-        <select class="col-md-12" id="ddlModelo" style="border-radius:7px; width:220px; margin-top: 15%; margin-left: 6%;  height: 40px;">
+        <select class="col-md-12" id="ddlModelo">
             <option>Modelo</option>
                @*Carregado via Ajax*@
         </select>
 
         <div class="col-md-12">
-            <button class="btn-primary btnTeste" style="border-radius:7px; border: none; margin-top: 20%; margin-left: 34%; width: 100px; height: 40px;">Buscar</button>
+            <button class="btn-primary btnTeste">Buscar</button>
         </div>
     </div>
 </div>
@@ -48,24 +88,6 @@
         })
 
     });
-
-        //function Onclick(id) {
-    //    $.ajax({
-    //        type: 'GET',
-    //        url: '/Carro/VisualizarModelo',
-    //        contentType: 'application/html; charset=utf-8',
-    //        data: {'id': id },
-    //        success: function (data) {
-
-    //        },
-    //        error: function () {
-
-    //        }
-    //    })
-
-    //    //$(".selecionar").find('input[type="radio"]').uniform();
-    //};
-
 
     $(document).on('click', '.btnTeste', function () {
         var idModelo = $('#ddlModelo').val();

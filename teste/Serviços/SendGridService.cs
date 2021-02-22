@@ -30,16 +30,14 @@ namespace teste.Serviços
         public async Task<bool> DispararEmail(Mensageria menssagem, string email)
         {
             bool sucessoEmail = true;
-
             sucessoEmail = Salvar(menssagem);
-
             sucessoEmail = await EnviarEmailAsync(menssagem, email);
-
             return sucessoEmail;
         }
 
         public static async Task<bool> EnviarEmailAsync(Mensageria menssagem, string email)
         {
+            //Quem enviar a mensagem
             var sender = new EmailAddress("hassanarisneto@gmail.com");
             var client = new SendGridClient(apiKey);
             var destinatarios = new List<EmailAddress>();
@@ -69,7 +67,6 @@ namespace teste.Serviços
         public bool Salvar(Mensageria mensagem)
         {
             bool sucesso = false;
-
             var menssageria = new Mensageria();
             menssageria.Assunto = mensagem.Assunto;
             menssageria.Mensagem = mensagem.Mensagem;

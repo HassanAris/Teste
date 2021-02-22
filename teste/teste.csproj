@@ -133,7 +133,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarroController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\jQueryDataTableParamModel.cs" />
     <Compile Include="DAL\Entities.cs" />
     <Compile Include="Global.asax.cs">
@@ -175,6 +174,9 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Imagens\img1.jpg" />
+    <Content Include="Content\Imagens\img2.jpeg" />
+    <Content Include="Content\Imagens\img4.jpg" />
     <Content Include="Content\Imagens\logo.png" />
     <Content Include="Content\Themes\uniformjs\agent\css\uniform.agent.css" />
     <Content Include="Content\Themes\uniformjs\agent\css\uniform.agent.min.css" />
@@ -215,12 +217,10 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Home\style.css" />
-    <Content Include="Scripts\Carro\Carro.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\Home\main.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -243,6 +243,7 @@
     <Content Include="Content\Themes\uniformjs\default\css\uniform.default.scss" />
     <Content Include="Content\Themes\uniformjs\aristo\css\uniform.aristo.scss" />
     <Content Include="Content\Themes\uniformjs\agent\css\uniform.agent.scss" />
+    <Content Include="Content\Imagens\img3.webp" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -359,9 +360,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -372,14 +370,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Scripts\plugins\datatables\media\images\Sorting icons.psd" />
     <Content Include="Scripts\plugins\datatables\Readme.md" />
     <Content Include="Views\Carro\VisualizarModelo.cshtml" />
+    <Content Include="Views\Carro\_ConteudoModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\teste\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

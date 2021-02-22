@@ -13,18 +13,14 @@ namespace teste.Models
         public Carro[] Carro { get; set; }
     }
 
-    public class ListarVM<T>
+    public static class GenericTypes
     {
-        public T[] Itens { get; set; }
-        public int Total { get; set; }
-        public int TotalFiltrado { get; set; }
-    }
-
-    public class AjaxResponse<T>
-    {
-        public bool Ok { get; set; }
-        public string MessageTitle { get; set; }
-        public string Message { get; set; }
-        public T Result { get; set; }
+        public class AjaxResponse<T>
+        {
+            public bool Ok { get; set; }
+            public string MessageTitle { get; set; }
+            public string Message { get; set; }
+            public T Result { get; set; }
+        }
     }
 }

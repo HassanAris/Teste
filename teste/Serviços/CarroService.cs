@@ -22,14 +22,6 @@ namespace teste.Serviços
             Repository = new GenericRepository<Carro, TesteConnectionString>(context);
         }
 
-        public ListarVM<Carro> Listar()
-        {
-            var resultado = new ListarVM<Carro>();
-            resultado.Itens = Repository.Get();
-            resultado.Total = Repository.Get().Length;
-            return resultado;
-        }
-
         public Carro[] Lista()
         {
             return Repository.Get();

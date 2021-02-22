@@ -12,13 +12,11 @@ namespace teste.Controllers
 {
     public class CarroController : Controller
     {
-        // GET: Carro
         public ActionResult Index()
         {
             var model = new ModeloVM();
             var carroService = new CarroService();
             model.Carro = carroService.Lista();
-
             return View(model);
         }
 
@@ -26,7 +24,6 @@ namespace teste.Controllers
         {
             var carroService = new ModeloService();
             var resultado = carroService.Lista(idCarro).OrderBy(x => x.ModeloCarro);
-
             var json = Json(new
             {
                 data = resultado
@@ -50,15 +47,13 @@ namespace teste.Controllers
             return json;
         }
 
-
         public ActionResult VisualizarModelo(int idModelo)
         {
             ViewBag.IdModelo = idModelo;
             return View();
         }
 
-        //pega mensagem e o email da pessoa que esta enviand a mensagem na tela
-        public async Task<JsonResult> Mensagem(int idPeca/*, string mensagem, string emailRemetente*/)
+        public async Task<JsonResult> Mensagem(int idPeca, string mensagem)
         {
             var menssagem = new Mensageria();
             var messageriaService = new SendGridService();
@@ -67,8 +62,7 @@ namespace teste.Controllers
             bool sucesso = false;
             var nomePeca = pecaService.NomePeca(idPeca);
             menssagem.Assunto = "Disponibilidade da Peça: " + nomePeca;
-            menssagem.Mensagem = "Teste";
-            //menssagem.Mensagem = mensagem;
+            menssagem.Mensagem = mensagem;
             menssagem.IdPeca = idPeca;
 
             //email temporario
@@ -76,14 +70,20 @@ namespace teste.Controllers
 
             sucesso = await messageriaService.DispararEmail(menssagem, destinatario);
 
-            result.Data = new AjaxResponse<int>
+            result.Data = new GenericTypes.AjaxResponse<int>
             {
                 Ok = sucesso,
-                MessageTitle = sucesso ? "Sucesso" : "Erro",
+                MessageTitle = sucesso ? "Sucesso" : "Atenção",
                 Message = sucesso ? "Mensagem enviada com sucesso" : "Ocorreu um erro durante o processo de envio de email, tente novamente mais tarde"
             };
 
             return result;
+        }
+
+        public ActionResult _ConteudoModal(int idPeca)
+        {
+            ViewBag.IdPeca = idPeca;
+            return PartialView();
         }
 
     }

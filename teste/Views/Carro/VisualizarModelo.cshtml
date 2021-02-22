@@ -2,10 +2,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+<style>
+    #tabela {
+        margin-top: 2%;
+        position: relative;
+        margin-left: 15%;
+        min-height: 200px;
+    }
 
+    .btnEmail {
+        border-radius: 7px;
+        border: none;
+        width: 100px;
+        height: 40px;
+    }
 
-<div class="col-md-12">
-    <div class="col-md-">
+    #teste {
+        margin-top: 3%;
+    }
+</style>
+
+<div class="col-md-8" id="tabela">
+    <div class="col-md-3">
+        <button class="btn-primary btnEmail" data-toggle="modal" data-target="#exampleModal">Enviar Email</button>
+    </div>
+    <div class="col-md-12" id="teste">
         <table id="tblPeca" class="display" style="width:100%">
             <thead>
                 <tr>
@@ -17,6 +38,26 @@
             <tbody>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mensagem</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @*Conteudo Carregado via ajax*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fecha</button>
+                <button type="button" class="btn btn-primary btnEnviar">Enviar</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -45,5 +86,43 @@
         });
     });
 
+    $(document).on('click', '.btnEmail', function () {
+        var idPeca = $('#tblPeca input[type="radio"]:checked').val();
+        if (idPeca == undefined) {
+            window.alert("Selecione um item da tabela");
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '/Carro/_ConteudoModal',
+                contentType: 'application/html; charset=utf-8',
+                data:{ 'idPeca': idPeca },
+                success: function (data) {
+                    var conteudo = $('.modal-body');
+                    conteudo.html(data)
+                    $('#exampleModal').show();
+                },
+                error: function () {
+                }
+            })
+        }
+    });
+
+    $(document).on('click', '.btnEnviar', function () {
+        var idPeca = $('#Id').val();
+        var mensagem = $('#mensagem').val();
+        $.ajax({
+            type: 'POST',
+            url: '/Carro/Mensagem',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ 'idPeca': idPeca, 'mensagem': mensagem}),
+            success: function (data) {
+                  
+                window.alert(data.Message);                             
+            },
+            error: function () {
+                window.alert("Erro ao enviar a mensagem");
+            }
+        })    
+    })
 
 </script>

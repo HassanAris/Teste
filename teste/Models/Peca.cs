@@ -12,7 +12,6 @@ namespace teste.Models
         public int Id{ get; set; }
         public string NomePeca { get; set; }
         public int QTD { get; set; }
-
         public virtual Modelo Modelo { get; set; }
     }
 }
